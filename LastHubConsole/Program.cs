@@ -8,6 +8,7 @@ using Discord.WebSocket;
 using System.Reflection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Configuration;
+using LastHubConsole.Data;
 
 namespace LastHubConsole
 {
@@ -17,7 +18,7 @@ namespace LastHubConsole
         //private readonly IConfiguration config;
         private DiscordSocketClient client;
 
-
+        
 
         public static void Main(string[] args) => new Program().MainAsync().GetAwaiter().GetResult();
 
@@ -36,8 +37,12 @@ namespace LastHubConsole
                 services.GetRequiredService<CommandService>().Log += Log;
 
                 // this is where we get the Token value from the configuration file, and start the bot
-                await client.LoginAsync(TokenType.Bot, "NjU3NDYyMzEzNDE4NDg5ODY5.Xfxjiw.iYYjgKNdVxvSRELctetMaqDnPGo");
+                await client.LoginAsync(TokenType.Bot, "NjU3NDYyMzEzNDE4NDg5ODY5.Xi6NNg.P3Bv_F3iAJii3cQPuFZqJj6HXr4");
                 await client.StartAsync();
+
+
+                //client.UserJoined += UserData.OnUserJoin;
+
 
                 // we get the CommandHandler class here and call the InitializeAsync method to start things up for the CommandHandler service
                 await services.GetRequiredService<CommandHandler>().InstallCommandsAsync();
